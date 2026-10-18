@@ -3,7 +3,7 @@ import Navbar from "./Navbar"
 
 function Layout() {
     return (
-        <div className="text-white">
+        <div>
             <Navbar />
             <Outlet />
         </div>

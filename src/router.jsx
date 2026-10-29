@@ -4,6 +4,7 @@ import Task from "./components/Task";
 import TaskDetail from "./components/TaskDetail";
 import NotFound from "./components/NotFound";
 import Layout from "./components/Layout";
+import TaskCreate from "./components/TaskCreate";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
             {
                 path: '/tasks',
                 element: <Task />
+            },
+            {
+                path: '/tasks/create',
+                element: <TaskCreate />
             },
             {
                 path: '/tasks/:id',

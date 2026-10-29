@@ -3,7 +3,7 @@ export default function Dashboard() {
         <div className="main-content grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="card rounded-xl p-5 shadow-sm">
                 <h5 className="text-xs font-bold text-gray-500">Total Tasks</h5>
-                <p className="text-2xl font-bold">12</p>
+                <p className="text-2xl font-bold">15</p>
             </div>
 
             <div className="card rounded-xl p-5 shadow-sm">

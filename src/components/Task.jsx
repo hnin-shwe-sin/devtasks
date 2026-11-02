@@ -1,16 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
+import { taskView } from '../routes';
 
 function Task() {
     const { tasks } = useOutletContext();
-    console.log(tasks);
 
     return (
         <div className="task-content p-5">
             <NavLink to="/tasks/create" className="bg-blue-400 rounded-md text-white font-bold p-2 cursor-pointer">Create</NavLink>
 
             <div className="task_list mt-5">
-                <table className="w-full rounded-sm overflow-scroll">
+                <table className="w-full rounded-sm table-auto">
                     <thead className="bg-gray-400 uppercase text-white">
                         <tr>
                             <th className="col p-2">No</th>
@@ -25,9 +25,11 @@ function Task() {
                             <tr key={task.id}>
                                 <td className="p-2">{task.id}</td>
                                 <td className="p-2">{task.title}</td>
-                                <td className="p-2">{task.desc}</td>
-                                <td className="p-2 flex gap-2 w-4">
-                                    <a href="#">View</a>
+                                <td className="p-2">
+                                    {task.desc.length > 30 ? `${task.desc.slice(0, 30)}...` : task.desc}
+                                </td>
+                                <td className="p-2 flex gap-1">
+                                    <Link to={taskView(task.id)}>View</Link>
                                     <a href="#">Edit</a>
                                     <a href="#">Delete</a>
                                 </td>

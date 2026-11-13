@@ -1,9 +1,14 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
-import { taskView } from '../routes';
+import { taskView, taskEdit } from '../routes';
 
 function Task() {
-    const { tasks } = useOutletContext();
+    const { tasks, setTasks } = useOutletContext();
+
+    const handleDelete = (id) => {
+        const updateTasks = tasks.filter((task) => task.id !== id);
+        setTasks(updateTasks);
+    }
 
     return (
         <div className="task-content p-5">
@@ -30,8 +35,8 @@ function Task() {
                                 </td>
                                 <td className="p-2 flex gap-1">
                                     <Link to={taskView(task.id)}>View</Link>
-                                    <a href="#">Edit</a>
-                                    <a href="#">Delete</a>
+                                    <Link to={taskEdit(task.id)}>Edit</Link>
+                                    <button onClick={() => handleDelete(task.id)}>Delete</button>
                                 </td>
                             </tr>
                         )}

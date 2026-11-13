@@ -6,4 +6,8 @@ function taskIndex() {
     return `/tasks`;
 }
 
-export { taskView, taskIndex }
+function taskEdit(id) {
+    return `/tasks/edit/${id}`;
+}
+
+export { taskView, taskIndex, taskEdit }

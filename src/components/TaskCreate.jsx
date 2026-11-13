@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
+import { taskIndex } from '../routes';
 
 function TaskCreate() {
-    const { setTask } = useOutletContext();
+    const { setTasks } = useOutletContext();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({ title: '', desc: '' });
 
     const handleChange = (event) => {
@@ -12,7 +14,9 @@ function TaskCreate() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setTask((prevTasks) => [...prevTasks, { id: Date.now(), ...formData }]);
+        setTasks((prevTasks) => [...prevTasks, { id: Date.now(), ...formData }]);
+
+        navigate(taskIndex());
     }
     return (
         <div className="p-5">

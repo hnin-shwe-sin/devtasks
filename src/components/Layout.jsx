@@ -1,13 +1,27 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "./Navbar"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from "axios";
 
 function Layout() {
-    const [tasks, setTasks] = useState([{ id: 1, title: 'task title 1', desc: 'The useParams hook is a built-in feature of React Router that extracts dynamic parameters from the current URL path. It returns an object where the keys match the parameter names specified in your route definitions, and the values represent the actual segments from the active' }]);
+    const [tasks, setTasks] = useState([]);
+
+    const [isLoading, setIsLoading] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/tasks')
+            .then(response => {
+                setTasks(response.data);
+            }).catch(error => {
+                console.log(error);
+            }).finally(() => {
+                setIsLoading(false);
+            })
+    }, []);
     return (
         <div>
             <Navbar />
-            <Outlet context={{ tasks, setTasks }} />
+            <Outlet context={{ tasks, setTasks, isLoading }} />
         </div>
     )
 }

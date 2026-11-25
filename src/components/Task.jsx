@@ -1,13 +1,18 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
 import { taskView, taskEdit } from '../routes';
+import axios from 'axios';
 
 function Task() {
     const { tasks, setTasks } = useOutletContext();
 
-    const handleDelete = (id) => {
-        const updateTasks = tasks.filter((task) => task.id !== id);
-        setTasks(updateTasks);
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8000/api/task/${id}`);
+            setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -26,12 +31,12 @@ function Task() {
                     </thead>
 
                     <tbody className="text-center bg-gray-500 text-white">
-                        {tasks.map((task) =>
+                        {tasks.map((task, index) =>
                             <tr key={task.id}>
-                                <td className="p-2">{task.id}</td>
+                                <td className="p-2">{index + 1}</td>
                                 <td className="p-2">{task.title}</td>
                                 <td className="p-2">
-                                    {task.desc.length > 30 ? `${task.desc.slice(0, 30)}...` : task.desc}
+                                    {task.description.length > 30 ? `${task.description.slice(0, 30)}...` : task.description}
                                 </td>
                                 <td className="p-2 flex gap-1">
                                     <Link to={taskView(task.id)}>View</Link>

@@ -9,7 +9,7 @@ export default function TaskDetail() {
     return (
         <div className="p-5">
             <h1 className="text-2xl font-bold mb-3">{task.title}</h1>
-            <p className="text-xl">{task.desc}</p>
+            <p className="text-xl">{task.description}</p>
         </div>
     )
 }

@@ -26,6 +26,7 @@ function Task() {
                             <th className="col p-2">No</th>
                             <th className="col p-2">Title</th>
                             <th className="col p-2">Description</th>
+                            <th className="col p-2">Status</th>
                             <th className="col p-2">Action</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@ function Task() {
                                 <td className="p-2">
                                     {task.description.length > 30 ? `${task.description.slice(0, 30)}...` : task.description}
                                 </td>
+                                <td className="p-2">{task.status == 1 ? 'Completed' : 'Draft'}</td>
                                 <td className="p-2 flex gap-1">
                                     <Link to={taskView(task.id)}>View</Link>
                                     <Link to={taskEdit(task.id)}>Edit</Link>

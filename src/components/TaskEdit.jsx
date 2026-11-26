@@ -13,7 +13,8 @@ function TaskEdit() {
     const [formData, setFormData] = useState(
         {
             title: task?.title ?? "",
-            description: task?.description ?? ""
+            description: task?.description ?? "",
+            status: task?.status ?? "0"
         }
     );
 
@@ -55,6 +56,14 @@ function TaskEdit() {
                 <div className="grid grid-cols-12 form-input mb-5">
                     <label className="col-span-3" htmlFor="description">Task Description</label>
                     <textarea value={formData.description} onChange={handleChange} name="description" className="p-2 col-span-9 rounded border border-gray-300 focus:outline-none" id="description" rows="5"></textarea>
+                </div>
+
+                <div className="grid grid-cols-12 form-input mb-5">
+                    <label className="col-span-3" htmlFor="description">Status</label>
+                    <select onChange={handleChange} name="status" className="p-2 col-span-9 rounded border border-gray-300 focus:outline-none">
+                        <option value="0">Draft</option>
+                        <option value="1">Done</option>
+                    </select>
                 </div>
 
                 <button type="submit" className="bg-blue-100 text-blue-700 font-bold p-2 rounded-md cursor-pointer">Update Task</button>
